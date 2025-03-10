@@ -55,9 +55,22 @@ const SuperHero = mongoose.model('SuperHero', superheroSchema);
 /* ----------------------------------------------- */
 /*             Eliminar un documento               */
 
-async function deleteSuperHero(nombreSuperHeroe) {
-    const result = await SuperHero.deleteOne({ nombreSuperHeroe: nombreSuperHeroe });
-    console.log('Superhéroe eliminado:', result);
-}
+// async function deleteSuperHero(nombreSuperHeroe) {
+//     const result = await SuperHero.deleteOne({ nombreSuperHeroe: nombreSuperHeroe });
+//     console.log('Superhéroe eliminado:', result);
+// }
 
-deleteSuperHero('Spiderman');
+// deleteSuperHero('Spiderman');
+
+
+/* ----------------------------------------------- */
+/*               Buscar documentos                 */
+
+async function findSuperHeroes(planetaOrigen) {
+    const heroes = await SuperHero.find({ planetaOrigen: planetaOrigen
+     });
+    console.log('Superhéroes encontrados:', heroes);
+};
+
+findSuperHeroes('Krypton');
+findSuperHeroes('Marte');
