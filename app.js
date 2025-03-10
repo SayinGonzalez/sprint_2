@@ -22,20 +22,32 @@ const SuperHero = mongoose.model('SuperHero', superheroSchema);
 /* ----------------------------------------------- */
 /*              Insertar un documento              */
 
-async function insertSuperHero() {
-    const hero = new SuperHero({
-        nombreSuperHeroe: 'Superman',
-        nombreReal: 'Clark Kent',
-        edad: 35,
-        planetaOrigen: 'Krypton',
-        debilidad: 'Kriptonita',
-        poderes: ['Super fuerza', 'Volar', 'Visión de rayos X'],
-        aliados: ['Batman', 'Mujer Maravilla'],
-        enemigos: ['Lex Luthor', 'Doomsday'],
-        creador: 'Sayin'
-    });
-    await hero.save();
-    console.log('SuperHero insertado:', hero);
+// async function insertSuperHero() {
+//     const hero = new SuperHero({
+//         nombreSuperHeroe: 'Superman',
+//         nombreReal: 'Clark Kent',
+//         edad: 35,
+//         planetaOrigen: 'Krypton',
+//         debilidad: 'Kriptonita',
+//         poderes: ['Super fuerza', 'Volar', 'Visión de rayos X'],
+//         aliados: ['Batman', 'Mujer Maravilla'],
+//         enemigos: ['Lex Luthor', 'Doomsday'],
+//         creador: 'Sayin'
+//     });
+//     await hero.save();
+//     console.log('SuperHero insertado:', hero);
+// }
+
+// insertSuperHero();
+
+/* ----------------------------------------------- */
+/*             Actualizar un documento             */
+
+async function updateSuperHero(nombreSuperHeroe) {
+    const result = await SuperHero.updateOne(
+        { nombreSuperHeroe: nombreSuperHeroe },
+        { $set: { edad: 36 } });
+    console.log('Resultado de la actualización:', result);
 }
 
-insertSuperHero();
+updateSuperHero('Superman');
