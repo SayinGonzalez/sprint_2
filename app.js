@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb+srv://Grupo-06:grupo06@cursadanodejs.ls9ii.mongodb.net/Node-js')
-.then(() => console.log('Conexión exitosa a MongoDB'))
-.catch(error => console.error('Error al conectar a MongoDB:', error));
+    .then(() => console.log('Conexión exitosa a MongoDB'))
+    .catch(error => console.error('Error al conectar a MongoDB:', error));
 
 const superheroSchema = new mongoose.Schema({
     nombreSuperHeroe: { type: String, required: true },
@@ -18,3 +18,24 @@ const superheroSchema = new mongoose.Schema({
 }, { collection: 'Grupo-06' });
 
 const SuperHero = mongoose.model('SuperHero', superheroSchema);
+
+/* ----------------------------------------------- */
+/*              Insertar un documento              */
+
+async function insertSuperHero() {
+    const hero = new SuperHero({
+        nombreSuperHeroe: 'Superman',
+        nombreReal: 'Clark Kent',
+        edad: 35,
+        planetaOrigen: 'Krypton',
+        debilidad: 'Kriptonita',
+        poderes: ['Super fuerza', 'Volar', 'Visión de rayos X'],
+        aliados: ['Batman', 'Mujer Maravilla'],
+        enemigos: ['Lex Luthor', 'Doomsday'],
+        creador: 'Sayin'
+    });
+    await hero.save();
+    console.log('SuperHero insertado:', hero);
+}
+
+insertSuperHero();
