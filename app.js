@@ -43,11 +43,21 @@ const SuperHero = mongoose.model('SuperHero', superheroSchema);
 /* ----------------------------------------------- */
 /*             Actualizar un documento             */
 
-async function updateSuperHero(nombreSuperHeroe) {
-    const result = await SuperHero.updateOne(
-        { nombreSuperHeroe: nombreSuperHeroe },
-        { $set: { edad: 36 } });
-    console.log('Resultado de la actualización:', result);
+// async function updateSuperHero(nombreSuperHeroe) {
+//     const result = await SuperHero.updateOne(
+//         { nombreSuperHeroe: nombreSuperHeroe },
+//         { $set: { edad: 36 } });
+//     console.log('Resultado de la actualización:', result);
+// }
+
+// updateSuperHero('Superman');
+
+/* ----------------------------------------------- */
+/*             Eliminar un documento               */
+
+async function deleteSuperHero(nombreSuperHeroe) {
+    const result = await SuperHero.deleteOne({ nombreSuperHeroe: nombreSuperHeroe });
+    console.log('Superhéroe eliminado:', result);
 }
 
-updateSuperHero('Superman');
+deleteSuperHero('Spiderman');
